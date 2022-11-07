@@ -30,6 +30,11 @@ pipeline {
                     sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=marwa'
                  }
               }
+               stage("nexus deploy"){
+                               steps{
+                                nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: '/var/lib/jenkins/workspace/DevOpsBack/target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus-snapshots', groupId: 'tn.esprit.rh', nexusUrl: '192.168.56.11:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'nexus-snapshots', version: '1.0.0'
+                               }
+                            }
               }
 
           }
