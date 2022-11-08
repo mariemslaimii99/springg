@@ -46,7 +46,7 @@ pipeline {
                                              }
                                           }
 
-                                          stage('Push Docker Image') {
+                                         /* stage('Push Docker Image') {
                                                steps {
                                                  withCredentials([string(credentialsId: 'DockerhubPWS', variable: 'DockerhubPWS')]) {
                                                  sh "docker login -u marwaboudellaaesprit -p ${DockerhubPWS}"
@@ -59,7 +59,9 @@ pipeline {
                                                   sh 'docker-compose up -d --build'
                                                }
                                           }
+                                      }*/
                                       }
+
 
 
 
