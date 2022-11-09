@@ -32,7 +32,7 @@ pipeline {
              }
               stage('MVN SONARQUBE '){
                  steps{
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=marwa'
+                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=MARWA'
                  }
               }
                stage("nexus deploy"){
