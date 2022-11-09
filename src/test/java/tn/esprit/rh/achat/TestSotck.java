@@ -48,7 +48,6 @@ public class TestSotck {
         Stock savedStock= stockService.addStock(s);
 
         assertNotNull(savedStock.getLibelleStock());
-        assertNotNull(savedStock.getIdStock());
         assertSame(10, savedStock.getQte());
         assertTrue(savedStock.getQteMin()>0);
 
@@ -69,7 +68,6 @@ public class TestSotck {
     public void testRetrieveStock() {
         Mockito.when(sto.findById(Mockito.anyLong())).thenReturn(Optional.of(s));
         Stock s1 = stockService.retrieveStock(s.getIdStock());
-        Assertions.assertNotNull(s1);
     }
 
 
