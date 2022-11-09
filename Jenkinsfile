@@ -53,7 +53,7 @@ pipeline {
 
                stage('Push Docker Image') {
                   steps {
-                  withCredentials([string(credentialsId: 'DockerhubPWS', variable: 'DockerhubPWS')]) {
+                  withCredentials([string(credentialsId: 'Docker-pwd', variable: 'DockerhubPWS')]) {
                   sh "docker login -u marwaboudellaaesprit -p ${DockerhubPWS}"
                   }
                   sh 'docker push marwaboudellaaesprit/docker_spring:2.2.4'
