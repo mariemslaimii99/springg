@@ -47,7 +47,7 @@ pipeline {
 
                stage('Build Docker Image') {
                   steps {
-                  sh 'docker build -t marwaboudellaaesprit/dockerfile_spring:2.2.4 .'
+                  sh 'docker build -t marwaboudellaaesprit/docker_spring:2.2.4 .'
                   }
                }
 
@@ -56,7 +56,7 @@ pipeline {
                   withCredentials([string(credentialsId: 'DockerhubPWS', variable: 'DockerhubPWS')]) {
                   sh "docker login -u marwaboudellaaesprit -p ${DockerhubPWS}"
                   }
-                  sh 'docker push marwaboudellaaesprit/dockerfile_spring:2.2.4'
+                  sh 'docker push marwaboudellaaesprit/docker_spring:2.2.4'
                   }
                }
                stage('DOCKER COMPOSE') {
