@@ -35,12 +35,12 @@ pipeline {
                     sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=54243838'
                  }
               }
-               stage("nexus deploy"){
-                  steps{
-                  nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: '/var/lib/jenkins/workspace/DevOpsBack/target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus-snapshots', groupId: 'tn.esprit.rh', nexusUrl: '192.168.33.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'nexus-snapshots', version: '1.0.0'
-                  }
-               }
-
+                stage('NEXUS'){
+            steps{
+                  echo "nexus"
+                  sh ' mvn deploy -DskipTests'
+            }
+        }
                             /* DOCKER */
 
 
