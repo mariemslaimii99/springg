@@ -4,7 +4,7 @@ pipeline {
             stage('Checkout GIT'){
                 steps{
                     echo 'Pulling...';
-                    git branch: 'Marwa',
+                    git branch: 'brancheEya',
                     url : 'https://github.com/Olfa-Babai/achat.git';
                 }
 
@@ -32,12 +32,12 @@ pipeline {
              }
               stage('MVN SONARQUBE '){
                  steps{
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=MARWA'
+                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=54243838'
                  }
               }
                stage("nexus deploy"){
                   steps{
-                  nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: '/var/lib/jenkins/workspace/DevOpsBack/target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus-snapshots', groupId: 'tn.esprit.rh', nexusUrl: '192.168.56.11:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'nexus-snapshots', version: '1.0.0'
+                  nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: '/var/lib/jenkins/workspace/DevOpsBack/target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus-snapshots', groupId: 'tn.esprit.rh', nexusUrl: '192.168.33.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'nexus-snapshots', version: '1.0.0'
                   }
                }
 
