@@ -8,7 +8,6 @@ pipeline {
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
 
-
     }
           stages{
             stage('Checkout GIT'){
@@ -45,6 +44,11 @@ pipeline {
                     sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=54243838'
                  }
               }
+                     stage("nexus deploy"){
+                  steps{
+                  nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: '/var/lib/jenkins/workspace/Projet/target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus-user-credentials', groupId: 'tn.esprit.rh', nexusUrl: '192.168.33.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-nexus-repo', version: '1.0.0'
+                  }
+               } 
               /* DOCKER */
  stage('Build Docker Image') {
                   steps {
