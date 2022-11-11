@@ -57,7 +57,7 @@ pipeline {
                   withCredentials([string(credentialsId: 'ouellani', variable: '542438388')]) {
                   sh "docker login -u ouellani -p ${542438388}"
                   }
-                  sh 'docker push ouellani/docker_spring:2.2.4'
+                  sh 'docker push ouellani/img:tagname'
                   }
                }
                stage('DOCKER COMPOSE') {
