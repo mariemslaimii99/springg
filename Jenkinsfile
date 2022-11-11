@@ -4,7 +4,7 @@ pipeline {
             stage('Checkout GIT'){
                 steps{
                     echo 'Pulling...';
-                    git branch: 'Marwa',
+                    git branch: 'Olfa_Operateur',
                     url : 'https://github.com/Olfa-Babai/achat.git';
                 }
 
@@ -32,7 +32,7 @@ pipeline {
              }
               stage('MVN SONARQUBE '){
                  steps{
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=MARWA'
+                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
                  }
               }
                stage("nexus deploy"){
