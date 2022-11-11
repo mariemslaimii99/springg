@@ -7,6 +7,11 @@ pipeline {
         NEXUS_URL = "192.168.33.10/:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
+                   
+registry = "zainebhamdouchdevops/myimage"
+registryCredential = 'dockerhub'
+dockerImage = ''
+
     }
           stages{
             stage('Checkout GIT'){
