@@ -37,7 +37,7 @@ pipeline {
               }
                stage("nexus deploy"){
                   steps{
-                  nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: '/var/lib/jenkins/workspace/DevOpsBack/target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus-snapshots', groupId: 'tn.esprit.rh', nexusUrl: '192.168.56.11:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'nexus-snapshots', version: '1.0.0'
+                  nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: '/var/lib/jenkins/workspace/projet/target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus-snapshots', groupId: 'tn.esprit.rh', nexusUrl: '192.168.33.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'nexus-snapshots', version: '1.0.0'
                   }
                }
 
@@ -47,16 +47,16 @@ pipeline {
 
                stage('Build Docker Image') {
                   steps {
-                  sh 'docker build -t marwaboudellaaesprit/docker_spring:2.2.4 .'
+                  sh 'docker build -t olfababai/docker_spring:2.2.4 .'
                   }
                }
 
                stage('Push Docker Image') {
                   steps {
-                  withCredentials([string(credentialsId: 'Docker-pwd', variable: 'DockerhubPWS')]) {
-                  sh "docker login -u marwaboudellaaesprit -p ${DockerhubPWS}"
+                  withCredentials([string(credentialsId: 'Docker-pwd', variable: 'Olfa07490115')]) {
+                  sh "docker login -u olfababai -p ${Olfa07490115*}"
                   }
-                  sh 'docker push marwaboudellaaesprit/docker_spring:2.2.4'
+                  sh 'docker push olfababai/docker_spring:2.2.4'
                   }
                }
                stage('DOCKER COMPOSE') {
