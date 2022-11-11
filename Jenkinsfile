@@ -54,7 +54,7 @@ pipeline {
                stage('Push Docker Image') {
                   steps {
                   withCredentials([string(credentialsId: 'Docker-pwd', variable: 'Olfa07490115')]) {
-                  sh "docker login -u olfababai -p ${Olfa07490115*}"
+                  sh "docker login -u olfababai -p ${Olfa07490115}"
                   }
                   sh 'docker push olfababai/docker_spring:2.2.4'
                   }
