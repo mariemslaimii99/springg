@@ -45,27 +45,26 @@ pipeline {
               }
               /* DOCKER */
 
-
-
-               stage('Build Docker Image') {
-                  steps {
-                  sh 'docker build -t ouellani/docker_spring:2.2.4 .'
-                  }
-               }
-
-               stage('Push Docker Image') {
-                  steps {
-                  withCredentials([string(credentialsId: 'Docker-pwd', variable: '542438388')]) {
-                  sh "docker login -u ouellani -p ${542438388}"
-                  }
-                  sh 'docker push ouellani/docker_spring:2.2.4'
-                  }
-               }
-               stage('DOCKER COMPOSE') {
-                  steps {
-                  sh 'docker-compose up -d --build'
-                  }
-               }
-               }
-
-          }
+stage('Building our image') {
+steps {
+script {
+dockerImage = docker.build registry + ":$BUILD_NUMBER"
+}
+}
+}
+stage('Deploy our image') {
+steps {
+script {
+docker.withRegistry( '', registryCredential ) {
+dockerImage.push()
+}
+}
+}
+}
+stage('Cleaning up') {
+steps {
+bat "docker rmi $registry:$BUILD_NUMBER"
+}
+}
+}
+}
