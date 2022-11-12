@@ -104,6 +104,20 @@
 				<version>3.0.0</version>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+		      <plugins>
+			      <plugin>
+				      <groupId>org.apache.maven.plugins</groupId>
+				      <artifactId>maven-deploy-plugin</artifactId>
+				      <version>2.8.2</version>
+			      </plugin>
+		      </plugins>
+	    </pluginManagement>
 	</build>
-
+	<distributionManagement>
+		<repository>
+			<id>olfa</id>
+			<url>http://192.168.33.10:8081/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
 </project>
