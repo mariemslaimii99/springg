@@ -80,13 +80,7 @@ public class FournisseurServiceImpl implements IFournisseurService {
 		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElseThrow(NullPointerException::new);
 		fournisseur.getSecteurActivites().add(secteurActivite);
 		fournisseurRepository.save(fournisseur);
-		/*
-		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
-		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
-        fournisseur.getSecteurActivites().add(secteurActivite);
-        fournisseurRepository.save(fournisseur);
-		*/
-		
+
 	}
 
 	

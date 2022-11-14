@@ -47,7 +47,7 @@ public class FactureServiceImpl implements IFactureService {
 	 * calculer les montants remise et le montant total d'un détail facture
 	 * ainsi que les montants d'une facture
 	 */
-	private Facture addDetailsFacture(Facture f, Set<DetailFacture> detailsFacture) {
+	/*private Facture addDetailsFacture(Facture f, Set<DetailFacture> detailsFacture) {
 		float montantFacture = 0;
 		float montantRemise = 0;
 		for (DetailFacture detail : detailsFacture) {
@@ -69,7 +69,7 @@ public class FactureServiceImpl implements IFactureService {
 		f.setMontantFacture(montantFacture);
 		f.setMontantRemise(montantRemise);
 		return f;
-	}
+	}*/
 
 	@Override
 	public void cancelFacture(Long factureId) {
@@ -107,13 +107,6 @@ public class FactureServiceImpl implements IFactureService {
 		log.info(e.getMessage());
 	}
 }
-	/*{
-		Facture facture = factureRepository.findById(idFacture).orElse(null);
-		Operateur operateur = operateurRepository.findById(idOperateur).orElse(null);
-		operateur.getFactures().add(facture);
-		operateurRepository.save(operateur);
-	}*/
-
 
 
 	@Override
