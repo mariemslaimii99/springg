@@ -42,15 +42,7 @@ pipeline {
                   nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: '/var/lib/jenkins/workspace/Projet/target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus-user-credentials', groupId: 'tn.esprit.rh', nexusUrl: '192.168.33.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-nexus-repo', version: '1.0.0'
                   }
                } 
-                    stage("publish to nexus") {
-            steps {
-                script {
-                configFileProvider([configFile(fileId: 'eya', variable: 'setting')]) {
-                    sh 'mvn  -B -DskipTests deploy -s $setting'
-
-}                }
-            }
-        }
+                  
               /* DOCKER */
  stage('Build Docker Image') {
                   steps {
