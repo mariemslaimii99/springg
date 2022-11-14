@@ -1,7 +1,7 @@
 pipeline {
           agent any
           stages{
-            stage('Checkout GIT'){
+            stage('Recuperation GIT'){
                 steps{
                     echo 'Pulling...';
                     git branch: 'Olfa_Operateur',
@@ -9,33 +9,33 @@ pipeline {
                 }
 
             }
-            stage('MVN CLEAN'){
+            stage('Mvn clean'){
             steps{
                 echo 'Pulling...';
                 sh 'mvn clean'
                 }
             }
-             stage('MVN COMPILE'){
+             stage('Compilation'){
                 steps{
                 sh 'mvn compile'
                 }
              }
-             stage('MVN PACKAGE'){
+             stage('Mvn package'){
                 steps{
                 sh 'mvn package -DskipTests=true'
                 }
              }
-             stage('MVN Test'){
+             stage('Test unitaire'){
                 steps{
                 sh 'mvn test'
                 }
              }
-              stage('MVN SONARQUBE '){
+              stage('Sonar test qualite '){
                  steps{
                     sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
                  }
               }
-             stage("publish to nexus") {
+             stage("Version nexus") {
             steps {
                 script {
                 configFileProvider([configFile(fileId: 'olfa', variable: 'settingnexus')]) {
@@ -57,7 +57,7 @@ pipeline {
 
                stage('Push Docker Image') {
                   steps {
-                  withCredentials([string(credentialsId: 'Docker-pwd', variable: 'Olfa07490115')]) {
+                  withCredentials([string(credentialsId: 'dpwd', variable: 'Olfa07490115')]) {
                   sh "docker login -u olfababai -p ${Olfa07490115}"
                   }
                   sh 'docker push olfababai/docker_spring:2.2.4'
