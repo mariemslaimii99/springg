@@ -33,7 +33,7 @@ public class StockRestController {
 		return stockService.retrieveStock(stockId);
 	}
 
-	// http://localhost:8089/SpringMVC/stock/add-stock
+	// http://192.168.56.11:8089/SpringMVC/stock/add-stock
 	@PostMapping("/add-stock")
 	@ResponseBody
 	public Stock addStock(@RequestBody Stock s) {
