@@ -49,15 +49,18 @@ pipeline {
                   sh 'docker build -t ouellani/docker_spring:2.2.4 .'
                   }
                }
-
+//////////*DOcker push image*//////////////////
                stage('Push Docker Image') {
                   steps {
-                  withCredentials([string(credentialsId: 'ouellani', variable: '542438388')]) {
+                  withCredentials([usernameColonPassword(credentialsId: 'ouellani', variable: '542438388')]) {
                   sh "docker login -u ouellani -p ${542438388}"
                   }
                   sh 'docker push ouellani/img:tagname'
                   }
                }
+                  
+                    
+                    /*DOCKERCOMPOSE*/
                stage('DOCKER COMPOSE') {
                   steps {
                   sh 'docker-compose up -d --build'
