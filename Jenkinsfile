@@ -38,7 +38,7 @@ pipeline {
              stage("publish to nexus") {
             steps {
                 script {
-                configFileProvider([configFile(fileId: 'olfa', variable: 'setting')]) {
+                configFileProvider([configFile(fileId: 'olfa', variable: 'settingnexus')]) {
                     sh 'mvn  -B -DskipTests deploy -s $setting'
 
 }                }
