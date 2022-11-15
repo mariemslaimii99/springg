@@ -1,25 +1,24 @@
-version: "2"
+version: "3.4"
 
 services:
- Sonarqube:
-  image: sonarqube:8.9.7-community
-  ports:
-   - "9000:9000"
-   - "9092:9092"
-  volumes:
-   - 'sonarQube_data:/opt/SonarQube/data'
-   - 'sonarQube_extensions:/opt/SonarQube/extensions'
-   - 'sonarQube_logs:/opt/SonarQube/logs'
-  
- nexus:
-  image: sonatype/nexus3
-  ports:
-   - "8081:8081"
-  volumes:
-   - "nexus-data:/sonatype-work"
+  mysql-container:
+    container_name: mysql-container
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_DATABASE=1
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+    restart: always
+    volumes:
+      - mysql-container:/var/lib/mysql:rw
+    image: 'mysql:latest'
+  docker_spring:
+    depends_on:
+      - mysql-container
+    container_name: docker_achat
+    ports:
+      - '8089:8089'
+    image: olfababai/docker_achat:2.2.4
 
-volumes
- sonarQube_data:
- sonarQube_extensions:
- sonarQube_logs:
- nexus-data:
+volumes:
+  mysql-container: { }
