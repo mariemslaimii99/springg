@@ -15,10 +15,10 @@ services:
   docker_spring:
     depends_on:
       - mysql-container
-    container_name: docker_achat
+    container_name: docker_springg
     ports:
       - '8089:8089'
-    image: olfababai/docker_achat:2.2.4
+    image: slaimimariem/docker_springg:2.2.4
 
 volumes:
   mysql-container: { }
